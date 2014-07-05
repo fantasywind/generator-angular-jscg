@@ -3,8 +3,12 @@
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
+    "rimraf": "^2.2.8",
     "gulp": "^3.8.5",
-    "gulp-coffee": "^2.0.1"
+    "gulp-coffee": "^2.0.1",
+    "gulp-jade": "^0.6.1",
+    "gulp-stylus": "^1.0.2",
+    "wiredep": "^1.8.1"
   },
   "engines": {
     "node": ">=0.10.0"

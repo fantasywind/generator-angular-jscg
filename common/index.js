@@ -24,7 +24,6 @@ Generator.prototype.setupEnv = function setupEnv() {
   this.sourceRoot(join(__dirname, '../templates/common'));
   var appPath = this.options.appPath;
   var copy = function (dest) {
-    console.log('source', join('src', dest))
     this.copy(join('src', dest), join(appPath, dest));
   }.bind(this);
 
