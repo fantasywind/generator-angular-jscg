@@ -55,6 +55,10 @@ var Generator = module.exports = function Generator(args, options) {
     args: args
   });
 
+  this.hookFor('IBSite:controller', {
+    args: args
+  });
+
   this.on('end', function () {
     var enabledComponents = [];
 
@@ -235,7 +239,9 @@ Generator.prototype.bootstrapFiles = function bootstrapFiles() {
 };
 
 Generator.prototype.createIndexHtml = function createIndexHtml() {
+  this.indexFile = this.indexFile.replace(/build:js\({\.tmp,src}\)\sscripts\/scripts\.js/g, "build:js({.tmp," + this.appPath + "}) scripts/scripts.js");
   this.indexFile = this.indexFile.replace(/&apos;/g, "'");
+  this.indexFile = this.indexFile.replace(/&quot;/g, '"');
   this.write(path.join(this.appPath, 'index.jade'), this.indexFile);
 };
 
@@ -261,11 +267,17 @@ Generator.prototype._injectDependencies = function _injectDependencies() {
       directory: 'bower_components',
       bowerJson: JSON.parse(fs.readFileSync('./bower.json')),
       ignorePath: new RegExp('^(' + this.appPath + '|..)/'),
-      src: 'app/index.html',
+      src: 'src/index.jade',
       fileTypes: {
-        html: {
+        jade: {
+          block: /(([ \t]*)\/\/\s*bower:*(\S*))(\n|\r|.)*?(\/\/\s*endbower)/gi,
+          detect: {
+            js: /script\(.*src=['"](.+)['"]>/gi,
+            css: /link\(href=['"](.+)['"]/gi
+          },
           replace: {
-            css: '<link rel="stylesheet" href="{{filePath}}">'
+            js: 'script(src=\'{{filePath}}\')',
+            css: 'link(rel="stylesheet", href="{{filePath}}")'
           }
         }
       }
