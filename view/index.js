@@ -30,28 +30,8 @@ Generator.prototype.createViewFiles = function createViewFiles() {
     'src/views/view.jade',
     path.join(
       this.env.options.appPath,
-      'views',
+      'views' + (this.options.cache ? '/cached' : ''),
       this.name.toLowerCase() + '.jade'
     )
   );
 };
-
-Generator.prototype.createViewCacheFlag = function createViewCacheFlag() {
-  if (this.options.cache) {
-    try {
-      var appPath = this.env.options.appPath;
-      var fullPath = path.join(appPath, 'index.jade');
-      angularUtils.rewriteFile({
-        file: fullPath,
-        needle: '// endtemplatecache',
-        splicable: [
-          'script(type="text/ng-template", id="' + this.name.toLowerCase().replace(/\\/g, '/') + '")',
-        ]
-      });
-    } catch (e) {
-      this.log.error(chalk.yellow(
-        '\nUnable to find ' + fullPath + '. Reference to ' + script + '.js ' + 'not added.\n'
-      ));
-    }
-  }
-}

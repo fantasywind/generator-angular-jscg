@@ -23,7 +23,17 @@ var Generator = module.exports = function Generator() {
   }
 
   this.hookFor('IBSite:controller');
-  this.hookFor('IBSite:view');
+
+  if (this.options.cache === undefined) {
+    this.options.cache = false
+  }
+  this.hookFor('IBSite:view', {
+    options: {
+      options: {
+        cache: this.options.cache
+      }
+    }
+  });
 };
 
 util.inherits(Generator, ScriptBase);

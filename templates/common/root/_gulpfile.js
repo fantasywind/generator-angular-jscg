@@ -6,6 +6,7 @@ var coffee = require('gulp-coffee');
 var stylus = require('gulp-stylus');
 var prefix = require('gulp-autoprefixer');
 var connect = require('gulp-connect');
+var templateCache = require('gulp-angular-templatecache');
 
 var DIST_PATH = './dist';
 var TMP_PATH = './.tmp';
@@ -92,10 +93,20 @@ gulp.task('coffee', function () {
 
 // views
 gulp.task('jade', function () {
-  gulp.src(SRC_PATH + '/views/**/*.jade')
-    .pipe(jade())
-    .pipe(gulp.dest(targetPath + '/views'))
-    .pipe(connect.reload());
+  if (SRC_PATH === targetPath) {
+    gulp.src([SRC_PATH + '/views/*.jade', SRC_PATH + '/views/cached/*.jade'])
+      .pipe(jade())
+      .pipe(gulp.dest(targetPath + '/views'))
+      .pipe(connect.reload());
+  } else if (DIST_PATH === targetPath) {
+    gulp.src(SRC_PATH + '/views/*.jade')
+      .pipe(jade())
+      .pipe(gulp.dest(targetPath + '/views'))
+    gulp.src(SRC_PATH + '/views/cached/**/*.jade')
+      .pipe(jade())
+      .pipe(templateCache())
+      .pipe(gulp.dest(DIST_PATH + '/scripts'));
+  }
 });
 
 gulp.task('serveConcurrent', [
@@ -107,8 +118,23 @@ gulp.task('serveConcurrent', [
   'coffee'
 ]);
 
+gulp.task('distConcurrent', [
+  'copy',
+  'images',
+  'jade',
+  'prepareIndex',
+  'stylus',
+  'coffee'
+]);
+
 gulp.task('setServePath', function () {
   targetPath = TMP_PATH;
 });
+
+gulp.task('setDistPath', function () {
+  targetPath = DIST_PATH;
+});
+
+gulp.task('dist', ['setDistPath', 'clean', 'distConcurrent']);
 
 gulp.task('serve', ['setServePath', 'clean', 'serveConcurrent', 'connect', 'watch']);

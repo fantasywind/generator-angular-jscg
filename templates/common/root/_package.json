@@ -10,6 +10,7 @@
     "gulp-stylus": "^1.0.2",
     "gulp-autoprefixer": "^0.0.8",
     "gulp-connect": "^2.0.5",
+    "gulp-angular-templatecache": "^1.2.1",
     "wiredep": "^1.8.1"
   },
   "engines": {
