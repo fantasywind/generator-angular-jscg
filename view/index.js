@@ -1,7 +1,9 @@
 'use strict';
 var path = require('path');
 var util = require('util');
+var chalk = require('chalk');
 var yeoman = require('yeoman-generator');
+var angularUtils = require('../util.js');
 
 var Generator = module.exports = function Generator() {
   yeoman.generators.NamedBase.apply(this, arguments);
@@ -33,3 +35,23 @@ Generator.prototype.createViewFiles = function createViewFiles() {
     )
   );
 };
+
+Generator.prototype.createViewCacheFlag = function createViewCacheFlag() {
+  if (this.options.cache) {
+    try {
+      var appPath = this.env.options.appPath;
+      var fullPath = path.join(appPath, 'index.jade');
+      angularUtils.rewriteFile({
+        file: fullPath,
+        needle: '// endtemplatecache',
+        splicable: [
+          'script(type="text/ng-template", id="' + this.name.toLowerCase().replace(/\\/g, '/') + '")',
+        ]
+      });
+    } catch (e) {
+      this.log.error(chalk.yellow(
+        '\nUnable to find ' + fullPath + '. Reference to ' + script + '.js ' + 'not added.\n'
+      ));
+    }
+  }
+}
