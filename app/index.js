@@ -21,6 +21,7 @@ var Generator = module.exports = function Generator(args, options) {
     type: String,
     required: 'false'
   });
+  this.env.options.appname = this.appname;
   this.env.options['app-suffix'] = this.options['app-suffix'];
   this.scriptAppName = this.appname + angularUtils.appName(this);
 
@@ -189,6 +190,10 @@ Generator.prototype.askForModules = function askForModules() {
       value: 'touchModule',
       name: 'angular-touch.js',
       checked: true
+    }, {
+      value: 'socket.io',
+      name: 'socket.io.js',
+      checked: false
     }
     ]
   }];
@@ -201,6 +206,7 @@ Generator.prototype.askForModules = function askForModules() {
     this.routeModule = hasMod('routeModule');
     this.sanitizeModule = hasMod('sanitizeModule');
     this.touchModule = hasMod('touchModule');
+    this.socketio = hasMod('socket.io');
 
     var angMods = [];
 
@@ -227,6 +233,11 @@ Generator.prototype.askForModules = function askForModules() {
 
     if (this.touchModule) {
       angMods.push("'ngTouch'");
+    }
+
+    if (this.socketio) {
+      angMods.push("'btford.socket-io'");
+      this.env.options.socketio = true;
     }
 
     if (angMods.length) {

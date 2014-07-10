@@ -56,6 +56,10 @@ html.no-js
     script(src="bower_components/json3/lib/json3.min.js")
     <![endif]-->
 
+    <% if (socketio) {%>
+    script(src='//cdn.socket.io/socket.io-1.0.6.js')
+    <% }%>
+
     // build:js(.) scripts/vendor.js
     // bower:js
     // endbower

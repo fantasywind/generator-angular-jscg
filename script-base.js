@@ -9,7 +9,7 @@ var Generator = module.exports = function Generator() {
   yeoman.generators.NamedBase.apply(this, arguments);
 
   try {
-    this.appname = require(path.join(process.cwd(), 'bower.json')).name;
+    this.appname = this.env.options.appname || require(path.join(process.cwd(), 'bower.json')).name;
   } catch (e) {
     this.appname = path.basename(process.cwd());
   }

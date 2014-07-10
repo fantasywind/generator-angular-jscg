@@ -20,8 +20,8 @@
     "pure",
     "yeoman"
   ],
-  "author": ["The Yeoman Team", "Chia Yu Pai"],
-  "license": ["BSD", "MIT"],
+  "author": ["Chia Yu Pai"],
+  "license": ["MIT"],
   "bugs": {
     "url": "https://github.com/fantasywind/generator-angular-jscg/issues"
   },

@@ -55,6 +55,10 @@ html.no-js
     script(src="bower_components/es5-shim/es5-shim.js")
     script(src="bower_components/json3/lib/json3.min.js")
     <![endif]-->
+    
+    <% if (socketio) {%>
+    script(src='//cdn.socket.io/socket.io-1.0.6.js')
+    <% }%>
 
     // build:js(.) scripts/vendor.js
     // bower:js
