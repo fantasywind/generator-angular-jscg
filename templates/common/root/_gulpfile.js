@@ -135,6 +135,8 @@ gulp.task('setDistPath', function () {
   targetPath = DIST_PATH;
 });
 
+gulp.task('build', ['dist']);
+
 gulp.task('dist', ['setDistPath', 'clean', 'distConcurrent']);
 
 gulp.task('serve', ['setServePath', 'clean', 'serveConcurrent', 'connect', 'watch']);
