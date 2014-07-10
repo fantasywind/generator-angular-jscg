@@ -1,5 +1,5 @@
 {
-  "name": "generator-IBSite",
+  "name": "generator-angular-jscg",
   "version": "0.1.0",
   "description": "Yeoman generator for AngularJS with Jade / Stylus / Coffeescript / Gulp / YUI Pure",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:fantasywind/generator-IBSite.git"
+    "url": "git@github.com:fantasywind/generator-angular-jscg.git"
   },
   "keywords": [
     "infinitiBeat",
@@ -23,9 +23,9 @@
   "author": ["The Yeoman Team", "Chia Yu Pai"],
   "license": ["BSD", "MIT"],
   "bugs": {
-    "url": "https://github.com/fantasywind/generator-IBSite/issues"
+    "url": "https://github.com/fantasywind/generator-angular-jscg/issues"
   },
-  "homepage": "https://github.com/fantasywind/generator-IBSite",
+  "homepage": "https://github.com/fantasywind/generator-angular-jscg",
   "dependencies": {
     "chalk": "^0.4.0",
     "wiredep": "^1.8.1",

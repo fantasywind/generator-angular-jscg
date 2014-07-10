@@ -47,15 +47,15 @@ var Generator = module.exports = function Generator(args, options) {
 
   // default to use coffeescript / stylus / jade
 
-  this.hookFor('IBSite:main', {
+  this.hookFor('angular-jscg:main', {
     args: args
   });
 
-  this.hookFor('IBSite:common', {
+  this.hookFor('angular-jscg:common', {
     args: args
   });
 
-  this.hookFor('IBSite:controller', {
+  this.hookFor('angular-jscg:controller', {
     args: args
   });
 
@@ -114,7 +114,7 @@ var Generator = module.exports = function Generator(args, options) {
     });
 
     if (this.env.options.ngRoute) {
-      this.invoke('IBSite:route', {
+      this.invoke('angular-jscg:route', {
         args: ['about']
       });
     }

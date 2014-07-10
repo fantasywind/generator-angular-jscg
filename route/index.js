@@ -22,12 +22,12 @@ var Generator = module.exports = function Generator() {
     this.foundWhenForRoute = true;
   }
 
-  this.hookFor('IBSite:controller');
+  this.hookFor('angular-jscg:controller');
 
   if (this.options.cache === undefined) {
     this.options.cache = false
   }
-  this.hookFor('IBSite:view', {
+  this.hookFor('angular-jscg:view', {
     options: {
       options: {
         cache: this.options.cache

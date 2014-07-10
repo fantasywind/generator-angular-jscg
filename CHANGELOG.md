@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## generator-IBSite
+## generator-angular-jscg
 Fork from generator-angular#v0.9.2
 
 ### v0.1.0 (2014-07-10)

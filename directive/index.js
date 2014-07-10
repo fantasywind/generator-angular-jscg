@@ -16,7 +16,7 @@ var Generator = module.exports = function Generator() {
 
   // hook view generator
   if (this.options.view) {
-    this.hookFor('IBSite:view', {
+    this.hookFor('angular-jscg:view', {
       options: {
         options: {
           cache: this.options.cache
