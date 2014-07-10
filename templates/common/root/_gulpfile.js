@@ -93,7 +93,7 @@ gulp.task('coffee', function () {
 
 // views
 gulp.task('jade', function () {
-  if (SRC_PATH === targetPath) {
+  if (TMP_PATH === targetPath) {
     gulp.src([SRC_PATH + '/views/*.jade', SRC_PATH + '/views/cached/*.jade'])
       .pipe(jade())
       .pipe(gulp.dest(targetPath + '/views'))

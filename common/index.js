@@ -32,6 +32,5 @@ Generator.prototype.setupEnv = function setupEnv() {
   copy('404.html');
   copy('favicon.ico');
   copy('robots.txt');
-  copy('views/main.jade');
   this.directory(join('src', 'images'), join(appPath, 'images'));
 };

@@ -130,18 +130,30 @@ Generator.prototype.welcome = function welcome() {
   this.log(yosay());
 };
 
-Generator.prototype.askForBootstrap = function askForBootstrap() {
+Generator.prototype.askForCSSFramework = function askForBootstrap() {
   var cb = this.async();
 
   this.prompt([{
-    type: 'confirm',
-    name: 'bootstrap',
-    message: 'Would you like to include Bootstrap?',
-    default: true
+    type: 'list',
+    name: 'cssFramework',
+    message: 'Which layout framework would you like to include?',
+    choices: ['Twitter Bootstrap', 'YUI Pure']
   }], function (props) {
-    this.bootstrap = props.bootstrap;
-
     cb();
+
+    // reset
+    this.bootstrap = false
+    this.pure = false
+
+    switch (props.cssFramework) {
+      case 'Twitter Bootstrap':
+      default:
+        this.bootstrap = true
+        break;
+      case 'YUI Pure':
+        this.pure = true
+        break;
+    }
   }.bind(this));
 };
 
@@ -227,10 +239,22 @@ Generator.prototype.askForModules = function askForModules() {
 
 Generator.prototype.readIndex = function readIndex() {
   this.ngRoute = this.env.options.ngRoute;
-  this.indexFile = this.engine(this.read('src/index.jade'), this);
+  if (this.bootstrap) {
+    this.indexFile = this.engine(this.read('src/views/bootstrap/index.jade'), this);
+  } else if (this.pure) {
+    this.indexFile = this.engine(this.read('src/views/pure/index.jade'), this);
+  }
 };
 
-Generator.prototype.bootstrapFiles = function bootstrapFiles() {
+Generator.prototype.generateMainPage = function generateMainPage() {
+  if (this.bootstrap) {
+    this.copy('src/views/bootstrap/main.jade', 'src/views/main.jade');
+  } else if (this.pure){
+    this.copy('src/views/pure/main.jade', 'src/views/main.jade');
+  }
+}
+
+Generator.prototype.cssFiles = function bootstrapFiles() {
   var cssFile = 'styles/main.styl';
   this.copy(
     path.join('src', cssFile),
@@ -251,7 +275,6 @@ Generator.prototype.packageFiles = function packageFiles() {
   this.template('root/_package.json', 'package.json');
   // Change to gulp
   this.template('root/_gulpfile.js', 'gulpfile.js');
-  //this.template('root/_Gruntfile.js', 'Gruntfile.js');
 };
 
 Generator.prototype._injectDependencies = function _injectDependencies() {
