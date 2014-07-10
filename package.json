@@ -1,7 +1,7 @@
 {
   "name": "generator-IBSite",
   "version": "0.1.0",
-  "description": "infinitiBeat site generator",
+  "description": "Yeoman generator for AngularJS with Jade / Stylus / Coffeescript / Gulp / YUI Pure",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,14 @@
     "url": "git@github.com:fantasywind/generator-IBSite.git"
   },
   "keywords": [
-    "infinitiBeat"
+    "infinitiBeat",
+    "jade",
+    "stylus",
+    "angular",
+    "coffeescript",
+    "gulp",
+    "pure",
+    "yeoman"
   ],
   "author": ["The Yeoman Team", "Chia Yu Pai"],
   "license": ["BSD", "MIT"],
