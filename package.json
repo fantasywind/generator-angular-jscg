@@ -1,6 +1,6 @@
 {
   "name": "generator-angular-jscg",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Yeoman generator for AngularJS with Jade / Stylus / Coffeescript / Gulp / YUI Pure",
   "main": "index.js",
   "scripts": {

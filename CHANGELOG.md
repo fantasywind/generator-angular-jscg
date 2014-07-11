@@ -3,6 +3,12 @@
 ## generator-angular-jscg
 Fork from generator-angular#v0.9.2
 
+### v0.1.2 (2014-07-11)
+
+#### Features
+
+* **gen:** add usemin and minify to build gulp script
+
 ### v0.1.1 (2014-07-11)
 
 #### Bug Fixes
