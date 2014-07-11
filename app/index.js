@@ -87,6 +87,10 @@ var Generator = module.exports = function Generator(args, options) {
       enabledComponents.push('angular-touch/angular-touch.js');
     }
 
+    if (this.socketio) {
+      enabledComponents.push('angular-socket-io/socket.min.js');
+    }
+
     enabledComponents = [
       'angular/angular.js',
       'angular-mocks/angular-mocks.js'
@@ -99,7 +103,7 @@ var Generator = module.exports = function Generator(args, options) {
         'coffee': true,
         'travis': true,
         'bower-components': enabledComponents,
-        'app-files': 'app/scripts/**/*.coffee',
+        'app-files': 'src/scripts/**/*.coffee',
         'test-files': [
           'test/mock/**/*.coffee',
           'test/spec/**/*.coffee'

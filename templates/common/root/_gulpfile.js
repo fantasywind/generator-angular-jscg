@@ -16,6 +16,7 @@ var ngmin = require('gulp-ngmin');
 var imagemin = require('gulp-imagemin');
 var pngcrush = require('imagemin-pngcrush');
 var es = require('event-stream');
+var karma = require('karma').server;
 
 var DIST_PATH = './dist';
 var TMP_PATH = './.tmp';
@@ -101,7 +102,7 @@ gulp.task('stylus', function (cb) {
 gulp.task('coffee', function (cb) {
   gulp.src(SRC_PATH + '/scripts/**/*.coffee')
     .pipe(coffee())
-    .pipe(ngmin({dynamic: true}))
+    .pipe(ngmin())
     .pipe(gulp.dest(TMP_PATH + '/scripts'))
     .pipe(connect.reload())
     .on('end', cb);
@@ -154,6 +155,14 @@ gulp.task('setDistPath', function () {
 });
 
 gulp.task('build', ['dist']);
+
+gulp.task('test', ['setServePath', 'clean', 'serveConcurrent'], function () {
+  karma.start({
+    configFile: __dirname + '/test/karma.conf.coffee'
+  }, function (exitCode) {
+    console.log('Karma Exit Code:\t', exitCode);
+  });
+});
 
 gulp.task('dist', ['setDistPath', 'clean', 'distConcurrent'], function () {
   gulp.src(SRC_PATH + '/index.jade')

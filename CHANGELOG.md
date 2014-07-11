@@ -3,6 +3,18 @@
 ## generator-angular-jscg
 Fork from generator-angular#v0.9.2
 
+### v0.1.4 (2014-07-12)
+
+#### Bug Fixes
+
+* **gen:** change ngmin module to non-dynamic mode avoiding for otherwise bug
+* **gen:** fixed source path in karma config file
+
+#### Featrues
+
+* **gen:** add karma and gulp task __test__ for unit test
+
+
 ### v0.1.3 (2014-07-11)
 
 #### Bug Fixes
