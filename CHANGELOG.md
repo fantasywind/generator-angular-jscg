@@ -13,7 +13,7 @@ Fork from generator-angular#v0.9.2
 #### Featrues
 
 * **gen:** add karma and gulp task __test__ for unit test
-
+* **gen:** add constant generator
 
 ### v0.1.3 (2014-07-11)
 
