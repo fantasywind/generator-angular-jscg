@@ -12,6 +12,9 @@ var uglify = require('gulp-uglify');
 var minifyHtml = require('gulp-minify-html');
 var minifyCss = require('gulp-minify-css');
 var rev = require('gulp-rev');
+var ngmin = require('gulp-ngmin');
+var imagemin = require('gulp-imagemin');
+var pngcrush = require('imagemin-pngcrush');
 var es = require('event-stream');
 
 var DIST_PATH = './dist';
@@ -76,6 +79,11 @@ gulp.task('copy', function () {
 // images
 gulp.task('images', function () {
   gulp.src(SRC_PATH + '/images/**/*')
+    .pipe(imagemin({
+      progressive: true,
+      svgPlugins: [{removeViewBox: false}],
+      use: [pngcrush()]
+    }))
     .pipe(gulp.dest(targetPath + '/images'));
 });
 
@@ -93,6 +101,7 @@ gulp.task('stylus', function (cb) {
 gulp.task('coffee', function (cb) {
   gulp.src(SRC_PATH + '/scripts/**/*.coffee')
     .pipe(coffee())
+    .pipe(ngmin({dynamic: true}))
     .pipe(gulp.dest(TMP_PATH + '/scripts'))
     .pipe(connect.reload())
     .on('end', cb);

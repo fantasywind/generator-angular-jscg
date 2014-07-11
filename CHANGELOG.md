@@ -3,6 +3,16 @@
 ## generator-angular-jscg
 Fork from generator-angular#v0.9.2
 
+### v0.1.3 (2014-07-11)
+
+#### Bug Fixes
+
+* **gen:** fixed usemin path bug on bootstrap index 
+
+#### Features
+
+* **gen:** add imagemin to gulp
+
 ### v0.1.2 (2014-07-11)
 
 #### Features
