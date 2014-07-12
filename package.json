@@ -11,6 +11,7 @@
     "url": "git@github.com:fantasywind/generator-angular-jscg.git"
   },
   "keywords": [
+    "yeoman-generator",
     "infinitiBeat",
     "jade",
     "stylus",
