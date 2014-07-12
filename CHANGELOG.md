@@ -3,6 +3,12 @@
 ## generator-angular-jscg
 Fork from generator-angular#v0.9.2
 
+### v0.1.5 (2014-07-12)
+
+#### Bug Fixes
+
+* **tmpl:** change directive template from static ```<div></div>``` to template html view name
+
 ### v0.1.4 (2014-07-12)
 
 #### Bug Fixes
