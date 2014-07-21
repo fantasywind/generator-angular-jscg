@@ -3,6 +3,12 @@
 ## generator-angular-jscg
 Fork from generator-angular#v0.9.2
 
+### v0.1.6 (2014-07-22)
+
+#### Change
+
+* **tmpl:** change all resources path from root /
+
 ### v0.1.5 (2014-07-12)
 
 #### Bug Fixes
